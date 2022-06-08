@@ -35,7 +35,7 @@ hs <- makeParamSet(
          makeNumericParam("lambda_l2",        lower=  0    , upper=   100)
         )
 
-ksemilla_azar  <- 102191  #Aqui poner la propia semilla
+ksemilla_azar  <- 103141  #Aqui poner la propia semilla
 
 #------------------------------------------------------------------------------
 #graba a un archivo los componentes de lista

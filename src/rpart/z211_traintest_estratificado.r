@@ -20,13 +20,17 @@ particionar  <- function( data,  division, agrupa="",  campo="fold", start=1, se
 #------------------------------------------------------------------------------
 
 #Aqui se debe poner la carpeta de la computadora local
-setwd("D:\\gdrive\\Austral2022R\\")   #Establezco el Working Directory
+setwd("C:/Users/Sebastian/OneDrive/Escritorio/DataMining/DMEco")   #Establezco el Working Directory
 #cargo los datos
 
 dataset  <- fread("./datasets/paquete_premium_202011.csv")
 
 #particiono estratificadamente el dataset
-particionar( dataset, division=c(70,30), agrupa="clase_ternaria", seed= 102191 )  #Cambiar por la primer semilla de cada uno !
+particionar( dataset, division=c(70,30), agrupa="clase_ternaria", seed= 104593
+
+
+
+ )  #Cambiar por la primer semilla de cada uno !
 
 param_basicos  <- list( "cp"=         0,  #complejidad minima
                         "minsplit"=  10,  #minima cantidad de registros en un nodo para hacer el split
@@ -58,7 +62,7 @@ dataset[ fold==2 , prob_baja2 := prediccion[, "BAJA+2"] ]
 ganancia_test  <- dataset[ fold==2 & prob_baja2 >  1/60, sum(ganancia) ]
 
 #escalo la ganancia como si fuera todo el dataset
-ganancia_test_normalizada  <-  ganancia_test / 0.3
+ganancia_test_normalizada  <-  ganancia_test / 0.5
 
 cat( ganancia_test_normalizada )
 

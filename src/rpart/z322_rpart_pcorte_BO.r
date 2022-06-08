@@ -27,7 +27,7 @@ hs  <- makeParamSet(
           makeNumericParam("pcorte"   , lower=  0.01, upper=    0.1), #probabilidad de corte,  DESAFIO el 1/60
           forbidden = quote( minbucket > 0.5*minsplit ) )             # minbuket NO PUEDE ser mayor que la mitad de minsplit
 
-ksemilla_azar  <- 102191   #cambiar por la primer semilla
+ksemilla_azar  <- 103141   #cambiar por la primer semilla
 
 #------------------------------------------------------------------------------
 #graba a un archivo los componentes de lista

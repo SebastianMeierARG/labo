@@ -13,7 +13,7 @@ require("rlist")
 require("lightgbm")
 
 
-ksemilla_azar  <- 102191  #Aqui poner la propia semilla
+ksemilla_azar  <- 103141  #Aqui poner la propia semilla
 
 #------------------------------------------------------------------------------
 #graba a un archivo los componentes de lista
@@ -121,7 +121,7 @@ EstimarGanancia_lightgbm  <- function( x )
 #Aqui empieza el programa
 
 #Aqui se debe poner la carpeta de la computadora local
-setwd("D:\\gdrive\\ITBA2022A\\")   #Establezco el Working Directory
+setwd("C:/Users/Sebastian/OneDrive/Escritorio/DataMining/DMEco")   #Establezco el Working Directory
 
 #cargo el dataset donde voy a entrenar el modelo
 dataset  <- fread("./datasets/paquete_premium_202011.csv")
@@ -130,7 +130,7 @@ dataset  <- fread("./datasets/paquete_premium_202011.csv")
 # HT  representa  Hiperparameter Tuning
 dir.create( "./labo/exp/",  showWarnings = FALSE ) 
 dir.create( "./labo/exp/HT5310/", showWarnings = FALSE )
-setwd("D:\\gdrive\\ITBA2022A\\labo\\exp\\HT5310\\")   #Establezco el Working Directory DEL EXPERIMENTO
+setwd("C:/Users/Sebastian/OneDrive/Escritorio/DataMining/DMEco/labo/exp/HT5310")   #Establezco el Working Directory DEL EXPERIMENTO
 
 
 #en estos archivos quedan los resultados

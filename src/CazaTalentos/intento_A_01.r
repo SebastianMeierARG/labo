@@ -5,14 +5,13 @@
 #limpio la memoria
 rm( list=ls() )
 gc()
-
 require("data.table")
 
+#calcula cuantos encestes logra un jugador con indice de enceste prob que hace qyt tiros libres
 ftirar  <- function( prob, qty )
 {
   return(  sum( runif(qty) < prob ) )
 }
-
 
 #variables globales que usan las funciones gimnasio_xxxx
 GLOBAL_jugadores  <- c()
@@ -33,11 +32,10 @@ gimnasio_init  <- function()
 gimnasio_tirar  <- function(  pids,  pcantidad )
 {
   GLOBAL_tiros_total  <<-  GLOBAL_tiros_total + length( pids )*pcantidad
-  res  <- mapply(  ftirar, GLOBAL_jugadores[pids], pcantidad )
+  res  <- mapply(  ftirar, GLOBAL_jugadores[pids], pcantidad )#vector cuantos aciertos tuvo cada jugador
 
   return( res )
 }
-
 
 #El cazatalentos decide a que jugador llevarse
 #devuelve la cantidad de tiros libres y si le acerto al verdadero_mejor o no
@@ -62,7 +60,6 @@ gimnasio_init()
 
 #Esta el la planilla del cazatalentos
 planilla_cazatalentos  <- data.table( "id" = 1:100 )
-
 
 #Ronda 1  ------------------------------------------------------
 #tiran los 100 jugadores es decir 1:100  90 tiros libres cada uno

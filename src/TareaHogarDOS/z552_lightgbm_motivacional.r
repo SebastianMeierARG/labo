@@ -18,10 +18,11 @@ require("data.table")
 require("lightgbm")
 
 
-ksemilla  <- 102191  #poner aqui la PRIMERA de sus cinco semillas
+ksemilla  <- 104593  #103141 (), 103993(), 104231 , 104417, 104593
+
 
 #Aqui se debe poner la carpeta de la computadora local
-setwd("D:\\gdrive\\ITBA2022A\\")   #Establezco el Working Directory
+setwd("C:/Users/Sebastian/OneDrive/Escritorio/DataMining/DMEco")   #Establezco el Working Directory
 
 #cargo el dataset donde voy a entrenar
 dataset  <- fread("./datasets/paquete_premium_202011.csv", stringsAsFactors= TRUE)

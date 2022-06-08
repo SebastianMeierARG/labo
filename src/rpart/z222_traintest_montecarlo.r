@@ -5,7 +5,7 @@ require("data.table")
 require("rpart")
 require("parallel")
 
-ksemillas  <- c(102191, 200177, 410551, 552581, 892237) #reemplazar por las propias semillas
+ksemillas  <- c(103141,103993,104231, 104417,  104593) #reemplazar por las propias semillas
 
 #------------------------------------------------------------------------------
 #particionar agrega una columna llamada fold a un dataset que consiste en una particion estratificada segun agrupa
@@ -56,7 +56,7 @@ ArbolEstimarGanancia  <- function( semilla, param_basicos )
 #------------------------------------------------------------------------------
 
 #Aqui se debe poner la carpeta de la computadora local
-setwd("D:\\gdrive\\Austral2022R\\")   #Establezco el Working Directory
+setwd("C:/Users/Sebastian/OneDrive/Escritorio/DataMining/DMEco")   #Establezco el Working Directory
 #cargo los datos
 
 dataset  <- fread("./datasets/paquete_premium_202011.csv")
@@ -66,10 +66,19 @@ param_basicos  <- list( "cp"=         -0.5,  #complejidad minima
                         "minbucket"=  440,  #minima cantidad de registros en una hoja
                         "maxdepth"=  5 ) #profundidad máxima del arbol
 
-#Un solo llamado, con la semilla 17
-ArbolEstimarGanancia( 17, param_basicos )   
 
+#crear carpeta dodnevan los resultados
+for(param_basicos$minsplit in c(1,2,4,8,16,50,100,200,300))
+{
+for(param_basicos$minbucket in c(1,2,4,8,16,50,100,200,300))
+{
 
+for(param_basicos$maxdepth in c(4:13))
+{
+ 
+
+  #Un solo llamado, con la semilla 17
+  ArbolEstimarGanancia( 17, param_basicos )  
 #la funcion mcmapply  llama a la funcion ArbolEstimarGanancia  tantas veces como valores tenga el vector  ksemillas
 ganancias  <- mcmapply( ArbolEstimarGanancia, 
                         ksemillas,   #paso el vector de semillas, que debe ser el primer parametro de la funcion ArbolEstimarGanancia
@@ -79,6 +88,10 @@ ganancias  <- mcmapply( ArbolEstimarGanancia,
 
 #muestro la lista de las ganancias en testing para la particion realizada con cada semilla
 ganancias
+}}}
+
+
+
 
 #paso la lista a vector
 unlist(ganancias)

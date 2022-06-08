@@ -24,8 +24,8 @@ GLOBAL_tiros_total  <- 0
 #debajo de ese numero esta el indice_de_enceste  que NO puede ser visto por el cazatalentos
 gimnasio_init  <- function() 
 {
-  GLOBAL_jugadores  <<- sample( c( (501:599 ) / 1000 , 0.7 ) )
-  GLOBAL_tiros_total  <<- 0
+  GLOBAL_jugadores  <<- sample( c( (501:599 ) / 1000 , 0.7 ) )# crea los jugadores y les asignaun nro
+  GLOBAL_tiros_total  <<- 0# inicializa los tiros totales en 0
 }
 
 
@@ -33,7 +33,7 @@ gimnasio_init  <- function()
 #devuelve en un vector cuantos aciertos tuvo cada jugador
 gimnasio_tirar  <- function(  pids,  pcantidad )
 {
-  GLOBAL_tiros_total  <<-  GLOBAL_tiros_total + length( pids )*pcantidad
+  GLOBAL_tiros_total  <<-  GLOBAL_tiros_total + length( pids )*pcantidad #tiros totales
   res  <- mapply(  ftirar, GLOBAL_jugadores[pids], pcantidad )
 
   return( res )
@@ -48,6 +48,8 @@ gimnasio_veredicto  <- function( pid )
                "acierto"=     as.integer( GLOBAL_jugadores[pid]==0.7) ))
 }
 #------------------------------------------------------------------------------
+
+
 
 Estrategia_A  <- function()
 {

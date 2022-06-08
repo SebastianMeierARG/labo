@@ -28,14 +28,14 @@ kBO_iter  <- 100   #cantidad de iteraciones de la Optimizacion Bayesiana
 
 #Aqui se cargan los hiperparametros
 hs <- makeParamSet( 
-         makeNumericParam("learning_rate",    lower=  0.01 , upper=    0.3),
-         makeNumericParam("feature_fraction", lower=  0.2  , upper=    1.0),
-         makeIntegerParam("min_data_in_leaf", lower=  0    , upper= 8000),
-         makeIntegerParam("num_leaves",       lower= 16L   , upper= 1024L),
-         makeNumericParam("prob_corte",       lower= 1/120 , upper=  1/20)  #esto sera visto en clase en gran detalle
-        )
+  makeNumericParam("learning_rate",    lower=  0.01 , upper=    0.3),
+  makeNumericParam("feature_fraction", lower=  0.2  , upper=    1.0),
+  makeIntegerParam("min_data_in_leaf", lower=  0    , upper= 8000),
+  makeIntegerParam("num_leaves",       lower= 16L   , upper= 1024L),
+  makeNumericParam("prob_corte",       lower= 1/120 , upper=  1/20)  #esto sera visto en clase en gran detalle
+)
 
-ksemilla_azar  <- 102191  #Aqui poner la propia semilla
+ksemilla_azar  <- 103141  #Aqui poner la propia semilla
 
 #------------------------------------------------------------------------------
 #graba a un archivo los componentes de lista
@@ -45,20 +45,20 @@ loguear  <- function( reg, arch=NA, folder="./exp/", ext=".txt", verbose=TRUE )
 {
   archivo  <- arch
   if( is.na(arch) )  archivo  <- paste0(  folder, substitute( reg), ext )
-
+  
   if( !file.exists( archivo ) )  #Escribo los titulos
   {
     linea  <- paste0( "fecha\t", 
                       paste( list.names(reg), collapse="\t" ), "\n" )
-
+    
     cat( linea, file=archivo )
   }
-
+  
   linea  <- paste0( format(Sys.time(), "%Y%m%d %H%M%S"),  "\t",     #la fecha y hora
                     gsub( ", ", "\t", toString( reg ) ),  "\n" )
-
+  
   cat( linea, file=archivo, append=TRUE )  #grabo al archivo
-
+  
   if( verbose )  cat( linea )   #imprimo por pantalla
 }
 #------------------------------------------------------------------------------
@@ -66,11 +66,11 @@ loguear  <- function( reg, arch=NA, folder="./exp/", ext=".txt", verbose=TRUE )
 fganancia_logistic_lightgbm   <- function( probs, datos) 
 {
   vlabels  <- get_field(datos, "label")
-
+  
   gan  <- sum( (probs > PROB_CORTE  ) *
-               ifelse( vlabels== 1, 59000, -1000 ) )
-
-
+                 ifelse( vlabels== 1, 59000, -1000 ) )
+  
+  
   return( list( "name"= "ganancia", 
                 "value"=  gan,
                 "higher_better"= TRUE ) )
@@ -82,14 +82,14 @@ fganancia_logistic_lightgbm   <- function( probs, datos)
 EstimarGanancia_lightgbm  <- function( x )
 {
   gc()  #libero memoria
-
+  
   #llevo el registro de la iteracion por la que voy
   GLOBAL_iteracion  <<- GLOBAL_iteracion + 1
-
+  
   PROB_CORTE <<- x$prob_corte   #asigno la variable global
-
+  
   kfolds  <- 5   # cantidad de folds para cross validation
-
+  
   param_basicos  <- list( objective= "binary",
                           metric= "custom",
                           first_metric_only= TRUE,
@@ -104,13 +104,13 @@ EstimarGanancia_lightgbm  <- function( x )
                           max_bin= 31,            #por ahora, lo dejo fijo
                           num_iterations= 9999,    #un numero muy grande, lo limita early_stopping_rounds
                           force_row_wise= TRUE    #para que los alumnos no se atemoricen con tantos warning
-                        )
-
+  )
+  
   #el parametro discolo, que depende de otro
   param_variable  <- list(  early_stopping_rounds= as.integer(50 + 5/x$learning_rate) )
-
+  
   param_completo  <- c( param_basicos, param_variable, x )
-
+  
   set.seed( 999983 )
   modelocv  <- lgb.cv( data= dtrain,
                        eval= fganancia_logistic_lightgbm,
@@ -118,25 +118,25 @@ EstimarGanancia_lightgbm  <- function( x )
                        nfold= kfolds,    #folds del cross validation
                        param= param_completo,
                        verbose= -100
-                      )
-
+  )
+  
   #obtengo la ganancia
   ganancia  <- unlist(modelocv$record_evals$valid$ganancia$eval)[ modelocv$best_iter ]
-
+  
   ganancia_normalizada  <-  ganancia* kfolds     #normailizo la ganancia
-
+  
   #el lenguaje R permite asignarle ATRIBUTOS a cualquier variable
   attr(ganancia_normalizada ,"extras" )  <- list("num_iterations"= modelocv$best_iter)  #esta es la forma de devolver un parametro extra
-
+  
   param_completo$num_iterations <- modelocv$best_iter  #asigno el mejor num_iterations
   param_completo["early_stopping_rounds"]  <- NULL     #elimino de la lista el componente  "early_stopping_rounds"
-
+  
   #logueo 
   xx  <- param_completo
   xx$ganancia  <- ganancia_normalizada   #le agrego la ganancia
   xx$iteracion <- GLOBAL_iteracion
   loguear( xx, arch= klog )
-
+  
   return( ganancia )
 }
 #------------------------------------------------------------------------------
@@ -192,12 +192,12 @@ configureMlr( show.learner.output= FALSE)
 #configuro la busqueda bayesiana,  los hiperparametros que se van a optimizar
 #por favor, no desesperarse por lo complejo
 obj.fun  <- makeSingleObjectiveFunction(
-              fn=       funcion_optimizar, #la funcion que voy a maximizar
-              minimize= FALSE,   #estoy Maximizando la ganancia
-              noisy=    TRUE,
-              par.set=  hs,     #definido al comienzo del programa
-              has.simple.signature = FALSE   #paso los parametros en una lista
-             )
+  fn=       funcion_optimizar, #la funcion que voy a maximizar
+  minimize= FALSE,   #estoy Maximizando la ganancia
+  noisy=    TRUE,
+  par.set=  hs,     #definido al comienzo del programa
+  has.simple.signature = FALSE   #paso los parametros en una lista
+)
 
 ctrl  <- makeMBOControl( save.on.disk.at.time= 600,  save.file.path= kbayesiana)  #se graba cada 600 segundos
 ctrl  <- setMBOControlTermination(ctrl, iters= kBO_iter )   #cantidad de iteraciones

@@ -38,7 +38,6 @@ gimnasio_tirar  <- function(  pids,  pcantidad )
   return( res )
 }
 
-
 #El cazatalentos decide a que jugador llevarse
 #devuelve la cantidad de tiros libres y si le acerto al verdadero_mejor o no
 gimnasio_veredicto  <- function( pid )
@@ -127,7 +126,7 @@ Estrategia_B  <- function()
 
 
   #Epilogo
-  #El cazatalentos toma una decision, elige al que mas aciertos tuvo en la ronda2
+  #El cazatalentos toma una decision, elige al que mas aciertos tuvo en la ronda6
   pos_mejor <-  planilla_cazatalentos[ , which.max(aciertos6) ]
   id_mejor  <-  planilla_cazatalentos[ pos_mejor, id ]
 

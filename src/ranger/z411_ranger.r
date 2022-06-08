@@ -13,7 +13,7 @@ require("ranger")
 require("randomForest")  #solo se usa para imputar nulos
 
 #Aqui se debe poner la carpeta de la computadora local
-setwd("D:\\gdrive\\UTN2022P\\")   #Establezco el Working Directory
+setwd("C:/Users/Sebastian/OneDrive/Escritorio/DataMining/DMEco")   #Establezco el Working Directory
 
 #cargo los datos donde entreno
 dtrain  <- fread("./datasets/paquete_premium_202011.csv", stringsAsFactors= TRUE)
@@ -29,13 +29,14 @@ dapply  <- na.roughfix( dapply )  #tambien imputo los nulos en los datos donde v
 
 #genero el modelo de Random Forest con la libreria ranger
 #notar como la suma de muchos arboles contrarresta el efecto de min.node.size=1
-param  <- list( "num.trees"=       300,  #cantidad de arboles
-                "mtry"=             30,  #cantidad de variables que evalua para hacer un split  sqrt(ncol(dtrain))
-                "min.node.size"=  1500,  #tamaño minimo de las hojas
-                "max.depth"=        12   # 0 significa profundidad infinita
-              )
+param  <- list( "num.trees"=       2358,  #cantidad de arboles
+                "mtry"=             7,  #cantidad de variables que evalua para hacer un split  sqrt(ncol(dtrain))
+                "min.node.size"=  417,  #tamaño minimo de las hojas
+                "max.depth"=        26,   # 0 significa profundidad infinita
+                'xval_folds'=     5
+                )
 
-set.seed(102191) #Establezco la semilla aleatoria
+set.seed(104593) #103141 (usada), 103993(usada), 104231 usada, 104417usada, 104593
 
 #para preparar la posibilidad de asignar pesos a las clases
 #la teoria de  Maite San Martin

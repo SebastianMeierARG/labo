@@ -8,9 +8,7 @@ ftirar  <- function( prob, qty )
   return( sum( runif(qty) < prob ) )
 }
 
-
 jugadores  <- rep( 0.7, 100 )  #jugadores identicos
-
 diferencias  <- c()
 
 for( i in 1:9999 )
@@ -25,6 +23,5 @@ for( i in 1:9999 )
 
    diferencias  <- c( diferencias, aciertos_torneo - aciertos_segunda )
 }
-
 
 mean( diferencias )

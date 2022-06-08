@@ -9,7 +9,7 @@ require("data.table")
 require("rpart")
 require("parallel")
 
-ksemillas  <- c( 102191, 200177, 410551, 552581, 892237 ) #reemplazar por las propias semillas
+ksemillas  <- c( 103141)#,103993,104231, 104417,  104593 ) #reemplazar por las propias semillas
 
 #------------------------------------------------------------------------------
 #particionar agrega una columna llamada fold a un dataset que consiste en una particion estratificada segun agrupa
@@ -73,7 +73,7 @@ ArbolesMontecarlo  <- function( semillas,  param_basicos )
 #------------------------------------------------------------------------------
 
 #Aqui se debe poner la carpeta de la computadora local
-setwd("D:\\gdrive\\Austral2022R\\")   #Establezco el Working Directory
+setwd("C:/Users/Sebastian/OneDrive/Escritorio/DataMining/DMEco")   #Establezco el Working Directory
 #cargo los datos
 
 dataset  <- fread("./datasets/paquete_premium_202011.csv")
@@ -101,5 +101,30 @@ ganC  <- ArbolesMontecarlo( ksemillas, paramC )
 
 #imprimo la media de las ganancias
 cat( mean(ganA), mean(ganB), mean(ganC) )
+
+## GENERACIÓN DE LOOP
+resultados = data.frame(matrix(vector(), 0, 4, dimnames=list(c(), c("ganancia","minsplit","minbucket","maxdepth"))),stringsAsFactors=F)
+
+
+#Grid search
+for (minsplit in 120:300) {
+  # Iteración minsplit
+  for (minbucket in round(minsplit/2):150) {
+    # Iteración minbucket
+    for (maxdepth in  4:7) {
+      # Iteración maxdepth
+      param  <- list(  "cp"=         -1,  #complejidad minima
+                       "minsplit"=   minsplit,  #minima cantidad de registros en un nodo para hacer el split
+                       "minbucket"=  minbucket,  #minima cantidad de registros en una ho0ja
+                       "maxdepth"=    maxdepth ) #profundidad máxima del arbol
+      ganancia <- ArbolesMontecarlo(ksemillas, param)
+      vector <- c(ganancia, minsplit, minbucket, maxdepth)
+      #print(vector)
+      resultados <- rbind(resultados, vector)
+    }
+  }
+}
+
+
 
 

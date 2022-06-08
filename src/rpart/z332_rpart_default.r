@@ -10,7 +10,7 @@ require("rlist")
 require("rpart")
 require("parallel")
 
-ksemilla_azar  <- 102191   #cambiar por la primer semilla
+ksemilla_azar  <- 103993   #cambiar por la primer semilla
 
 #------------------------------------------------------------------------------
 #graba a un archivo los componentes de lista
@@ -124,7 +124,7 @@ EstimarGanancia  <- function( x )
 #------------------------------------------------------------------------------
 #Aqui empieza el programa
 
-setwd( "D:\\gdrive\\UTN2022P\\" )
+setwd( "C:/Users/Sebastian/OneDrive/Escritorio/DataMining/DMEco" )
 
 #cargo el dataset
 dataset  <- fread("./datasets/paquete_premium_202011.csv")   #donde entreno
