@@ -142,7 +142,7 @@ EstimarGanancia_lightgbm  <- function( x )
 #------------------------------------------------------------------------------
 #Aqui empieza el programa
 
-#Aqui se debe poner la carpeta de la computadora local
+#No tocar, en Google Cloud todos tenemos las mismas carpetas
 setwd("~/buckets/b1/")   #Establezco el Working Directory
 
 #cargo el dataset donde voy a entrenar el modelo
