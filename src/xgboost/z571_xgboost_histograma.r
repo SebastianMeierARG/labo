@@ -27,20 +27,37 @@ dtrain  <- xgb.DMatrix( data= data.matrix(  dataset[ , campos_buenos, with=FALSE
                         label= dataset$clase01 )
 
 #genero el modelo con los parametros por default
+#santi
 modelo  <- xgb.train( data= dtrain,
-                      param= list( objective=       "binary:logistic",
+                      param= list( objective=       "reg:logistic",
                                    tree_method=     "hist",
                                    grow_policy=     "lossguide",
                                    max_bin=            256,
-                                   prob_corte=       0.016666667,
-                                   max_depth =            0,
-                                   max_leaves=          20,
-                                   min_child_weight=    1,
-                                   eta=                 0.3,
-                                   colsample_bytree=    1.0
-                                   ),
-                      nrounds= 1  # MUY IMPORTANTE,  la cantidad de arboles del ensemble
-                    )
+                                   max_leaves=          535,
+                                   min_child_weight=    9,
+                                   eta=                 0.01005043, #probando,
+                                   colsample_bytree=    0.528177528,
+                                   gamma=                0.0,  #por ahora, lo dejo fijo, equivalente a  min_gain_to_split
+                                   alpha=                0.0,  #por ahora, lo dejo fijo, equivalente a  lambda_l1
+                                   lambda=               0.0,  #por ahora, lo dejo fijo, equivalente a  lambda_l2
+                                   subsample=            1.0,  #por ahora, lo dejo fijo
+                                   max_depth=           0,    #ya lo voy a cambiar
+                                   scale_pos_weight=     1.0   #por ahora, lo dejo fijo
+                      ),
+                      nrounds= 225  # MUY IMPORTANTE,  la cantidad de arboles del ensemble
+)
+# modelo  <- xgb.train( data= dtrain,
+#                       param= list( objective=       "binary:logistic",
+#                                    tree_method=     "hist",
+#                                    grow_policy=     "lossguide",
+#                                    max_bin=            256,
+#                                    max_leaves=          20,
+#                                    min_child_weight=    1,
+#                                    eta=                 0.3,
+#                                    colsample_bytree=    1.0
+#                       ),
+#                       nrounds= 34  # MUY IMPORTANTE,  la cantidad de arboles del ensemble
+# )
 
 #aplico el modelo a los datos sin clase
 dapply  <- fread("./datasets/paquete_premium_202101.csv")
@@ -52,7 +69,7 @@ prediccion  <- predict( modelo,
 
 #Genero la entrega para Kaggle
 entrega  <- as.data.table( list( "numero_de_cliente"= dapply[  , numero_de_cliente],
-                                 "Predicted"= as.integer( prediccion > 1/60)  ) ) #genero la salida
+                                 "Predicted"= as.integer( prediccion > 0.014617192)  ) ) #genero la salida
 
 dir.create( "./labo/exp/",  showWarnings = FALSE ) 
 dir.create( "./labo/exp/KA5710/", showWarnings = FALSE )
