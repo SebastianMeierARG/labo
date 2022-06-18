@@ -31,12 +31,17 @@ dtrain  <- lgb.Dataset( data= data.matrix(  dataset[ , campos_buenos, with=FALSE
 #genero el modelo con los parametros por default
 modelo  <- lgb.train( data= dtrain,
                       param= list( objective=        "binary",
+                                   max_depth=           -1,
+                                   min_gain_to_split=    0,
+                                   lambda_l1=          0,
+                                   lambda_l2=            0,
+                                   
                                    max_bin=             31,
-                                   learning_rate=        0.1,
-                                   num_iterations=      67,
-                                   num_leaves=          31,
-                                   feature_fraction=     1,
-                                   min_data_in_leaf=  20,
+                                   learning_rate=        0.010534326,
+                                   num_iterations=      442,
+                                   num_leaves=          770,
+                                   feature_fraction=     0.489910327,
+                                   min_data_in_leaf=  2207,
                                    seed=            103141 )  )
 
 
@@ -54,7 +59,7 @@ prediccion  <- predict( modelo,
 
 #Genero la entrega para Kaggle
 entrega  <- as.data.table( list( "numero_de_cliente"= dapply[  , numero_de_cliente],
-                                 "Predicted"= as.integer(prediccion > 0.016666667 ) )  ) #genero la salida
+                                 "Predicted"= as.integer(prediccion > 0.015662346 ) )  ) #genero la salida
 
 dir.create( "./labo/exp/",  showWarnings = FALSE ) 
 dir.create( "./labo/exp/KA2512/", showWarnings = FALSE )

@@ -19,7 +19,7 @@ options(error = function() {
   stop("exiting after script error") 
 })
 
-kdataset_salida  <- "paquete_premium_ext_721.csv.gz"
+kdataset_salida  <- "paquete_premium_ext_721.csv.gz"  #Nombre del archivo de salida
 kcampos_fijos  <- c( "numero_de_cliente", "clase_ternaria", "foto_mes" )
 
 #------------------------------------------------------------------------------
@@ -223,7 +223,7 @@ AgregarVariables  <- function( dataset )
   #valvula de seguridad para evitar valores NaN  que es 0/0
   #paso los NaN a 0 , decision polemica si las hay
   #se invita a asignar un valor razonable segun la semantica del campo creado
-  nans      <- lapply(names(dataset),function(.name) dataset[ , sum(is.nan(get(.name)))])
+  nans      <- lapply(names(dataset), function(.name) dataset[ , sum(is.nan(get(.name)))])
   nans_qty  <- sum( unlist( nans) )
   if( nans_qty > 0 )
   {
