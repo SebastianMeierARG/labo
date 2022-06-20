@@ -19,7 +19,7 @@ setwd("~/buckets/b1/")   #Establezco el Working Directory
 
 
 kprefijo       <- "KA741"
-ksemilla_azar  <- 102191  #Aqui poner la propia semilla
+ksemilla_azar  <- 103141 #103141 (usada), 103993(usada), 104231, 104417, 104593  #Aqui poner la propia semilla
 kdataset       <- "./datasets/paquete_premium_ext_721.csv.gz"
 
 #donde entrenar
@@ -80,9 +80,9 @@ dataset[ foto_mes >= kfinal_mes_desde &
 #creo las carpetas donde van los resultados
 #creo la carpeta donde va el experimento
 # HT  representa  Hiperparameter Tuning
-dir.create( "./exp/",  showWarnings = FALSE ) 
-dir.create( paste0("./exp/", kexperimento, "/" ), showWarnings = FALSE )
-setwd( paste0("./exp/", kexperimento, "/" ) )   #Establezco el Working Directory DEL EXPERIMENTO
+dir.create( "./exp/HTsin202006/",  showWarnings = FALSE ) 
+dir.create( paste0("./exp/HTsin202006/", kexperimento, "/" ), showWarnings = FALSE )
+setwd( paste0("./exp/HTsin202006/", kexperimento, "/" ) )   #Establezco el Working Directory DEL EXPERIMENTO
 
 
 
