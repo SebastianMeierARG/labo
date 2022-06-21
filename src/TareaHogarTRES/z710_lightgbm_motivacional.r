@@ -67,8 +67,8 @@ dataset[ foto_mes >= 202001 & foto_mes<=202011 & foto_mes != 202006,
 #--------------------------------------
 #creo las carpetas donde van los resultados
 dir.create( "./exp/",  showWarnings = FALSE ) 
-dir.create( "./exp/KA7100/KA3/", showWarnings = FALSE )
-setwd( "./exp/KA7100/KA3/" )
+dir.create( "./exp/KA7100/KA4/", showWarnings = FALSE )
+setwd( "./exp/KA7100/KA4/" )
 
 
 #dejo los datos en el formato que necesita LightGBM
@@ -85,7 +85,7 @@ modelo  <- lgb.train( data= dtrain,
                                    num_leaves=         1002,
                                    min_data_in_leaf=   6263,
                                    feature_fraction=      0.9100319271,
-                                   seed=           103993  #103141 (usada), 103993(usada), 104231, 104417, 104593
+                                   seed=           104231  #103141 (usada), 103993(usada), 104231, 104417, 104593
 
                                   )
                     )
