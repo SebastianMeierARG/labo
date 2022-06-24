@@ -220,7 +220,7 @@ AgregarVariables  <- function( dataset )
   dataset[ ,mpasivos_margen_sqr         :=         mpasivos_margen**2]
   dataset[ ,cpayroll_trx_sqr            :=         cpayroll_trx**2]
   dataset[ ,mv_status04_sqr             :=         mv_status04**2]
-  dataset[ ,mv_Finiciomora_delta1_sqr   :=         mv_Finiciomora_delta1**2]
+  
   dataset[ ,Visa_Finiciomora_sqr        :=         Visa_Finiciomora**2]
   dataset[ ,mprestamos_personales_sqr   :=         mprestamos_personales**2]
             
@@ -233,7 +233,7 @@ AgregarVariables  <- function( dataset )
   dataset[ ,mpayroll_log                :=         log(mpayroll)]
   dataset[ ,mpasivos_margen_log         :=         log(mpasivos_margen)]
   dataset[ ,mv_status04_log             :=         log(mv_status04)]
-  dataset[ ,mv_Finiciomora_delta1_log   :=         log(mv_Finiciomora_delta1)]
+  
   dataset[ ,Visa_Finiciomora_log        :=         log(Visa_Finiciomora)]
   dataset[ ,mprestamos_personales_log   :=         log(mprestamos_personales)]
   

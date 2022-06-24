@@ -352,7 +352,33 @@ AgregarVariables  <- function( dataset )
   dataset[ , mvr_mpagominimo         := mv_mpagominimo  / mv_mlimitecompra ]
 
   #Aqui debe usted agregar sus propias nuevas variables
-
+  dataset[ , ctrx_quarter_normalizado_sqr   :=  ctrx_quarter_normalizado**2]
+  dataset[ , ctrx_quarter_sqr       :=  ctrx_quarter**2]
+  dataset[ , mcuentas_saldo_sqr     :=  mcuentas_saldo**2]
+  dataset[ , mcaja_ahorro_sqr       :=  mcaja_ahorro**2]
+  dataset[ , mtarjeta_visa_consumo_sqr   :=  mtarjeta_visa_consumo**2]
+  dataset[ , cpayroll_trx_sqr       :=  cpayroll_trx**2]
+  dataset[ ,foto_mes_sqr                :=         foto_mes**2]
+  dataset[ ,mpayroll_sobre_edad_sqr     :=         mpayroll_sobre_edad**2]
+  dataset[ ,mpayroll_sqr                :=         mpayroll**2]
+  dataset[ ,mpasivos_margen_sqr         :=         mpasivos_margen**2]
+  dataset[ ,cpayroll_trx_sqr            :=         cpayroll_trx**2]
+  dataset[ ,mv_status04_sqr             :=         mv_status04**2]
+  dataset[ ,Visa_Finiciomora_sqr        :=         Visa_Finiciomora**2]
+  dataset[ ,mprestamos_personales_sqr   :=         mprestamos_personales**2]
+  
+  dataset[ , mcuentas_saldo_log     :=  log(mcuentas_saldo)]
+  dataset[ , mcaja_ahorro_log       :=  log(mcaja_ahorro)]
+  dataset[ , mtarjeta_visa_consumo_log   :=  log(mtarjeta_visa_consumo)]
+  dataset[ , cpayroll_trx_log       :=  log(cpayroll_trx)]
+  dataset[ ,foto_mes_log                :=         log(foto_mes)]
+  dataset[ ,mpayroll_sobre_edad_log     :=         log(mpayroll_sobre_edad)]
+  dataset[ ,mpayroll_log                :=         log(mpayroll)]
+  dataset[ ,mpasivos_margen_log         :=         log(mpasivos_margen)]
+  dataset[ ,mv_status04_log             :=         log(mv_status04)]
+  dataset[ ,Visa_Finiciomora_log        :=         log(Visa_Finiciomora)]
+  dataset[ ,mprestamos_personales_log   :=         log(mprestamos_personales)]
+  
   #valvula de seguridad para evitar valores infinitos
   #paso los infinitos a NULOS
   infinitos      <- lapply(names(dataset),function(.name) dataset[ , sum(is.infinite(get(.name)))])
