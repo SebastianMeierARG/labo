@@ -30,13 +30,13 @@ kfinal_meses_malos  <- c( 202006 )   #meses a excluir del entrenamiento
 #hiperparametros de LightGBM
 #aqui copiar a mano lo menor de la Bayesian Optimization
 # si es de IT y le gusta automatizar todo, no proteste, ya llegara con MLOps
-kmax_bin           <-    31
-klearning_rate     <-     0.0131094708
-knum_iterations    <-   951
-knum_leaves        <-  1002
-kmin_data_in_leaf  <- 16918
-kfeature_fraction  <-     0.5609450635
 
+kmax_bin           <-    31
+klearning_rate     <-     0.0102119310059437
+knum_iterations    <-   1248
+knum_leaves        <-  2036
+kmin_data_in_leaf  <- 11870
+kfeature_fraction  <-     0.59058619968938
 
 
 kexperimento   <- paste0( kprefijo, "0" )

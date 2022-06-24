@@ -223,19 +223,7 @@ AgregarVariables  <- function( dataset )
   
   dataset[ ,Visa_Finiciomora_sqr        :=         Visa_Finiciomora**2]
   dataset[ ,mprestamos_personales_sqr   :=         mprestamos_personales**2]
-            
-  dataset[ , mcuentas_saldo_log     :=  log(mcuentas_saldo)]
-  dataset[ , mcaja_ahorro_log       :=  log(mcaja_ahorro)]
-  dataset[ , mtarjeta_visa_consumo_log   :=  log(mtarjeta_visa_consumo)]
-  dataset[ , cpayroll_trx_log       :=  log(cpayroll_trx)]
-  dataset[ ,foto_mes_log                :=         log(foto_mes)]
-  dataset[ ,mpayroll_sobre_edad_log     :=         log(mpayroll_sobre_edad)]
-  dataset[ ,mpayroll_log                :=         log(mpayroll)]
-  dataset[ ,mpasivos_margen_log         :=         log(mpasivos_margen)]
-  dataset[ ,mv_status04_log             :=         log(mv_status04)]
-  
-  dataset[ ,Visa_Finiciomora_log        :=         log(Visa_Finiciomora)]
-  dataset[ ,mprestamos_personales_log   :=         log(mprestamos_personales)]
+
   
   
   
