@@ -37,7 +37,7 @@ hs <- makeParamSet(
 
 kprefijo       <- "HT731"
 ksemilla_azar  <- 103141  #103141 (usada), 103993(usada), 104231, 104417, 104593
-kdataset       <- "./datasets/paquete_premium_ext_721_logsqr.csv.gz"
+kdataset       <- "./datasets/paquete_premium_ext_721.csv.gz"
 
 #donde entrenar
 ktrain_mes_desde    <- 201912        #mes desde donde entreno

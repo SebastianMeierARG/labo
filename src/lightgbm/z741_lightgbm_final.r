@@ -32,7 +32,7 @@ kfinal_meses_malos  <- c( 202006 )   #meses a excluir del entrenamiento
 # si es de IT y le gusta automatizar todo, no proteste, ya llegara con MLOps
 
 kmax_bin           <-    31
-klearning_rate     <-     0.0102119310059437
+klearning_rate     <-     0.010211931
 knum_iterations    <-   1248
 knum_leaves        <-  2036
 kmin_data_in_leaf  <- 11870

@@ -684,7 +684,7 @@ DummiesNA( dataset )  #esta linea debe ir ANTES de Corregir  !!
 
 
 #hay DOS metodos  ClaudioCastillo  o  AsignarNA
-CorregirVariablesROTAS( dataset,  metodo= "ClaudioCastillo" )  #esta linea debe ir DESPUES de  DummiesNA
+CorregirVariablesROTAS( dataset,  metodo= "AsignarNA" )  #esta linea debe ir DESPUES de  DummiesNA
 
 #--------------------------------------
 
@@ -746,7 +746,7 @@ TendenciaYmuchomas( dataset,
                     ratiomax=  FALSE
                   )
 
-CanaritosAsesinos( metodo="Kozak" )
+CanaritosAsesinos( metodo="CapaGeologica" )
 cols_lagueables  <- intersect( cols_lagueables,  colnames(dataset) )
 
 
@@ -762,7 +762,7 @@ TendenciaYmuchomas( dataset,
                     ratiomax=  FALSE
                   )
 
-CanaritosAsesinos( metodo="Kozak" )
+CanaritosAsesinos( metodo="CapaGeologica" )
 cols_lagueables  <- intersect( cols_lagueables,  colnames(dataset) )
 
 
