@@ -10,7 +10,7 @@ experiment:
   name: "exp"
   type: "TrainingStrategy"
   tags: [ "austero", "undersampling10" ]
-  requires: [ "8120FEa" ]
+  requires: [ "8120FEc" ]
 
 
 param:
@@ -36,7 +36,7 @@ param:
 
   #donde valido
   validate:
-    periodos: [ 202011 ]
+    periodos: [ 202010 ]
     rango:
       desde:  
       hasta:  
