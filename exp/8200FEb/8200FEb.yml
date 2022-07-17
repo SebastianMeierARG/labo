@@ -45,7 +45,7 @@ param:
     promedio:  [  TRUE, TRUE,  TRUE, TRUE ]   #promedio de la ventana
     ratioavg:  [ TRUE, TRUE, TRUE, TRUE ]   #valor sobre el promedio de la ventana
     ratiomax:  [ TRUE, TRUE, TRUE, TRUE ]   #valor sobre el maximo de la ventana
-    canaritos: [   0.0,   0.1,   0.0,   0.1 ]   #porcentaje de canaritos asesinos, del total de columnas del dataset, 0 indica NO reducir campos por canaritos
+    canaritos: [   0.1,   0.1,   0.1,   0.1 ]   #porcentaje de canaritos asesinos, del total de columnas del dataset, 0 indica NO reducir campos por canaritos
 
 
   tony:  TRUE
