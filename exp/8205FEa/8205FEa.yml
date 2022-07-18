@@ -30,9 +30,9 @@ param:
 
   #lags y sus deltas
   lags: 
-    correr:    [  TRUE,  TRUE, TRUE, TRUE, TRUE, TRUE ]  #si se corre el lag
+    correr:    [  TRUE,  TRUE, FALSE, FALSE, FALSE, TRUE ]  #si se corre el lag
     lag:       [     1,      2,     3,     4,     5,     6 ]  #orden del lag
-    delta:     [  TRUE,  TRUE, TRUE, TRUE, TRUE, TRUE ]  #solo se activa si correr=TRUE 
+    delta:     [  TRUE,  TRUE, FALSE, FALSE, FALSE, TRUE ]  #solo se activa si correr=TRUE 
     canaritos: [   0.1,    0.1,   0.1,   0.1,   0.1,   0.1 ]  #porcentaje de canaritos asesinos, del total de columnas del dataset, 0 indica NO reducir campos por canaritos
 
 
@@ -40,11 +40,11 @@ param:
     correr:    [  TRUE, TRUE, TRUE, TRUE ]   #tendencias a correr, es lo que controla y se impone al resto
     ventana:   [     6,     3,    9,     12 ]   #tamaño de la ventana, solo se corren las que dicen  correr=TRUE
     tendencia: [  TRUE,  TRUE,  TRUE,  TRUE ]   #pendiente de la recta ajustada por cuadrados minimos
-    minimo:    [ TRUE,  TRUE, TRUE, TRUE ]   #minimo de la ventana
-    maximo:    [ TRUE, TRUE, TRUE, TRUE ]   #maximo de la ventana
+    minimo:    [ FALSE,  FALSE, FALSE, FALSE ]   #minimo de la ventana
+    maximo:    [ FALSE, FALSE, FALSE, FALSE ]   #maximo de la ventana
     promedio:  [  TRUE, TRUE,  TRUE, TRUE ]   #promedio de la ventana
-    ratioavg:  [ TRUE, TRUE, TRUE, TRUE ]   #valor sobre el promedio de la ventana
-    ratiomax:  [ TRUE, TRUE, TRUE, TRUE ]   #valor sobre el maximo de la ventana
+    ratioavg:  [ TRUE, FALSE, FALSE, TRUE ]   #valor sobre el promedio de la ventana
+    ratiomax:  [ TRUE, FALSE, FALSE, TRUE ]   #valor sobre el maximo de la ventana
     canaritos: [   0.1,   0.1,   0.1,   0.1 ]   #porcentaje de canaritos asesinos, del total de columnas del dataset, 0 indica NO reducir campos por canaritos
 
 
@@ -52,7 +52,7 @@ param:
 
   rankeador: TRUE
 
-  canaritos_final: 0.0   #si es CERO entonces no hace el filtrado final por canaritos
+  canaritos_final: 0.1   #si es CERO entonces no hace el filtrado final por canaritos
   
   
   
