@@ -25,7 +25,7 @@ param:
   
   variablesmanuales: TRUE   #NO SE AGREGAN VARIABLES MANUALES
 
-  acumulavars: TRUE   #a lo nuevo lo va aplicando
+  acumulavars: FALSE   #a lo nuevo lo va aplicando
 
 
   #lags y sus deltas
@@ -59,7 +59,7 @@ param:
   randomforest:    #crea variables {0,1}  con las hojas de un random forest, ATENCION que explota !!
     correr:        TRUE
     num.trees:        50
-    max.depth:         6
+    max.depth:         8
     min.node.size:   500
     mtry:             13
   
