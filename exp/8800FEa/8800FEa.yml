@@ -54,6 +54,18 @@ param:
 
   canaritos_final: 0.0   #si es CERO entonces no hace el filtrado final por canaritos
 
+  
+  randomforest:    #crea variables {0,1}  con las hojas de un random forest, ATENCION que explota !!
+    correr:        TRUE
+    num.trees:        50
+    max.depth:         6
+    min.node.size:   500
+    mtry:             13
+  
+  
+
+
+
   files:
     input:
       dentrada: [ "dataset" ]
