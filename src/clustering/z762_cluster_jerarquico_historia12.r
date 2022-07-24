@@ -84,7 +84,7 @@ dev.off()
 h <- 20
 distintos <- 0
 
-while(  h>0  &  !( distintos >=6 & distintos <=7 ) )
+while(  h>0  &  !( distintos >=3 & distintos <=4 ) )
 {
   h <- h - 1 
   rf.cluster  <- cutree( hclust.rf, h)
@@ -117,6 +117,9 @@ dataset[  , mean(mtarjeta_visa_consumo),  cluster2 ]
 dataset[  , mean(mcuentas_saldo),  cluster2 ]
 dataset[  , mean(chomebanking_trx),  cluster2 ]
 
+# medias por mes de cada cluster, para la variable cpayroll_trx
+dataset12[foto_mes>=202001 & foto_mes<=202012, mean(cpayroll_trx), by=.(foto_mes,cluster2)]
+#dataset[ cluster==3  , mean( campo ) ,  foto_mes ]   #solucion Gustavo
 
 #Finalmente grabo el archivo para  Juan Pablo Cadaveira
 #agrego a dataset12 el cluster2  y lo grabo
