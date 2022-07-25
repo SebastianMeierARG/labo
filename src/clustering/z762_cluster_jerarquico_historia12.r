@@ -70,8 +70,8 @@ hclust.rf  <- hclust( as.dist ( 1.0 - modelo$proximity),  #distancia = 1.0 - pro
 
 #primero, creo la carpeta donde van los resultados
 dir.create( "./exp/", showWarnings= FALSE )
-dir.create( "./exp/ST7620", showWarnings= FALSE )
-setwd( "~/buckets/b1/exp/ST7620" )
+dir.create( "./exp/ST7621", showWarnings= FALSE )
+setwd( "~/buckets/b1/exp/ST7621" )
 
 
 #imprimo un pdf con la forma del cluster jerarquico
@@ -118,7 +118,7 @@ dataset[  , mean(mcuentas_saldo),  cluster2 ]
 dataset[  , mean(chomebanking_trx),  cluster2 ]
 
 # medias por mes de cada cluster, para la variable cpayroll_trx
-dataset12[foto_mes>=202001 & foto_mes<=202012, mean(cpayroll_trx), by=.(foto_mes,cluster2)]
+#dataset12[foto_mes>=202001 & foto_mes<=202012, mean(cpayroll_trx), by=.(foto_mes,cluster2)]
 #dataset[ cluster==3  , mean( campo ) ,  foto_mes ]   #solucion Gustavo
 
 #Finalmente grabo el archivo para  Juan Pablo Cadaveira
